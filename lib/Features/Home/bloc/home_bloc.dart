@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:groceryapp/Data/groceryData.dart';
+import 'package:groceryapp/Data/grocery_data.dart';
+import 'package:groceryapp/Data/whishlist_items.dart';
 import 'package:groceryapp/Features/Home/models/homeDataModel.dart';
 
 
@@ -42,6 +44,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (kDebugMode) {
       print('WhishList Product Clicked');
     }
+    whishListItems.add(event.clickedProduct);
+    emit(HomeProductItemWhishlistedActionState());
   }
 
   FutureOr<void> homeProductCartButtonClickedEvent(
@@ -49,6 +53,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (kDebugMode) {
       print('Cart Product Clicked');
     }
+    cartItems.add(event.clickedProduct);
+    emit(HomeProductItemCartedActionState());
   }
 
   FutureOr<void> homeEventWhishlistButtonNavigateEvent(

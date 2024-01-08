@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groceryapp/Features/Cart/ui/cart.dart';
 import 'package:groceryapp/Features/Home/bloc/home_bloc.dart';
+import 'package:groceryapp/Features/Home/ui/productTileWidget.dart';
 import 'package:groceryapp/Features/WhishList/ui/whishlist.dart';
 
 class Home extends StatefulWidget {
@@ -31,6 +32,10 @@ class _HomeState extends State<Home> {
         } else if (state is HomeNavigateToWishlistPageActionState) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const WhishListPage()));
+        } else if (state is HomeProductItemWhishlistedActionState) {
+           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Item WhishListed')));
+        } else if (state is HomeProductItemCartedActionState) {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Item Carted')));
         }
       },
       builder: (context, state) {
@@ -42,6 +47,7 @@ class _HomeState extends State<Home> {
             ),
           );
           case HomeLoadedSucessState:
+          final sucessState = state as HomeLoadedSucessState;
           return Scaffold(
           appBar: AppBar(
             title: const Text('Simple Bloc Demo App'),
@@ -61,7 +67,11 @@ class _HomeState extends State<Home> {
                   icon: const Icon(Icons.shopping_bag_outlined)),
             ],
           ),
-          body: Container(),
+          body: ListView.builder(
+            itemCount: sucessState.products.length,
+            itemBuilder: (context,index){
+            return ProductTileWidget(productDataModel: sucessState.products[index], homeBloc: homeBloc,);
+          }),
         );
           case HomeErrorState:
           return const Scaffold(
