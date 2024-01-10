@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:groceryapp/Features/Cart/bloc/cart_bloc.dart';
 
 import 'package:groceryapp/Features/Home/models/homeDataModel.dart';
+import 'package:groceryapp/Features/WhishList/bloc/whishlist_bloc.dart';
 
-class CartTileWidget extends StatelessWidget {
-   const CartTileWidget({super.key, required this.productDataModel, required this.cartBloc});
+class WhishListTileWidget extends StatelessWidget {
+   const WhishListTileWidget({super.key, required this.productDataModel, required this.whishlistBloc});
   final ProductDataModel productDataModel;
-  final CartBloc cartBloc;
+  final WhishlistBloc whishlistBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class CartTileWidget extends StatelessWidget {
                   // icon: const Icon(Icons.favorite_border)),
               IconButton(
                   onPressed: () {
-                    cartBloc.add(CartItemRemovedFromCartPage(productDataModel: productDataModel));
+                    //cartBloc.add(CartItemRemovedFromCartPage(productDataModel: productDataModel));
                   },
                   icon: const Icon(Icons.delete_outline_rounded)),
                 ],

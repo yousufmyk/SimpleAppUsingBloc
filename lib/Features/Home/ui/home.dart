@@ -49,6 +49,7 @@ class _HomeState extends State<Home> {
           case HomeLoadedSucessState:
           final sucessState = state as HomeLoadedSucessState;
           return Scaffold(
+          backgroundColor: Color(0xffededd2),
           appBar: AppBar(
             title: const Text('Simple Bloc Demo App'),
             backgroundColor: Colors.teal,
@@ -70,7 +71,10 @@ class _HomeState extends State<Home> {
           body: ListView.builder(
             itemCount: sucessState.products.length,
             itemBuilder: (context,index){
-            return ProductTileWidget(productDataModel: sucessState.products[index], homeBloc: homeBloc,);
+            return Padding(
+              padding: const EdgeInsets.only(top: 16,bottom: 16),
+              child: ProductTileWidget(productDataModel: sucessState.products[index], homeBloc: homeBloc,),
+            );
           }),
         );
           case HomeErrorState:

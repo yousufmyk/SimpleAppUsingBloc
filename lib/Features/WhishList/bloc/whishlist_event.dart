@@ -1,4 +1,6 @@
 part of 'whishlist_bloc.dart';
 
 @immutable
-sealed class WhishlistEvent {}
+abstract class WhishlistEvent {}
+
+class WhishlistInitialEvent extends WhishlistEvent{}
